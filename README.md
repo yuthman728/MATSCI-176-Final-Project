@@ -108,7 +108,7 @@ This notebook can again be run exactly as is, as the methods directly mimic thos
 ![image](https://github.com/user-attachments/assets/34ef260a-8588-40f0-8b0f-b16d1a733414) 
 <img width="530" alt="image" src="https://github.com/user-attachments/assets/886e2eb4-fe36-42ba-bfaa-c813c5ab81ff" />
 
-## Conclusins and Important Notes
+## Conclusions and Important Notes
 This readme file is designed to walk you through, step-by-step, how to use this analysis platform, as well as describe our thought process behind the methods done in this study. It is important to organize your files exactly how this repository is organized, which is why we highly suggest cloning this repository into your VSCode workspace to perform the analysis. 
 
 Remember, you must download the zipped data file from the shared document on google drive available above and again here at this link: https://drive.google.com/file/d/1Nl9k6N7_o8a3MekAxHAgIa5Y8L2XjtYQ/view?usp=drive_link
