@@ -96,7 +96,7 @@ We first begin by importing time series oxidation data from the "Time Series Oxi
 
 ![image](https://github.com/user-attachments/assets/4098e7bd-d252-4975-bfe7-81a17b0b5c8c)
 
-## Step 5: Ablation Study 2 - Removing Pre-processing Steps
+## Step 5: Ablation Study 2 - Removing Pre-Processing Steps
 
 The novelty of this approach is using synthetically generated data to train a model, and to prove the importance of creating synthetic data that closely mimics our experimental data, we studied how our pre-processing methods affect the accuracy of the model. In the notebook titled "Ablation_Study_2_Removing_Preprocessing.ipynb," we remove the pre-processing functions described in step three (except for the numerical issue correction) to evaluate how our model performs on a dataset with noise that is much greater than we simulated in the synthetic dataset. 
 
