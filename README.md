@@ -1,5 +1,6 @@
 # An Exploratory Analysis of Using Synthetically Generated Differential Reflectance Data to Train a Convolutional Neural Network to Predict Oxidation in WS2
 Authors: Emma White and Yemi Uthman
+
 MATSCI 176 Final Project
 
 ## Project Overview
