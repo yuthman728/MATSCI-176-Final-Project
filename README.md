@@ -1,4 +1,4 @@
-# MATSCI 176 Final Project: Exploratory Analysis of Using Synthetically Generated Differential Reflectance Data to train a Convolutional Neural Network to Predict Oxidation in WS2
+# MATSCI 176 Final Project: Exploratory Analysis of Using Synthetically Generated Differential Reflectance Data to Train a Convolutional Neural Network to Predict Oxidation in WS2
 Authors: Emma White and Yemi Uthman
 
 ## Project Overview
@@ -36,9 +36,37 @@ Running cell 7 allows you to perform a parallelized version of the curve fitting
 
 Proceeding forward, the next few cells can all be run as they are, with their main purpose being loading in these .csv files into a readable format for doing further analysis. Saving them in this manner also allows you to come back to the data without neeeding to redo the curve fitting routine.
 
-Next, we take a region of 20x20 pixels located at the center of the triangle 
+Next, we take a region of 20x20 pixels located at the center of the triangle that we will use to extract the average peak parameters for this sample. We don't want to use every pixel in the sample, as even though we believe it should oxidize uniformly across the sample, we still observe some edge effects between the material and substrate junction which may alter these parameters. The arrays of the average parameters are also saved into a .csv file in a newly generated folder titled "Average Parameters" to be used for later.
 
+The last step is to then fit an allometric function to the average parameter evolution across these 15 minutes of oxidation, which again, can be run without making any alterations to the code. This will generate a plot of the peak evolution over time, as well as a function relating the parameter value to some oxidation time.
 
+![image](https://github.com/user-attachments/assets/ff0d2637-460e-4c21-a23a-25f2435077cb)
+
+We now have three functions the express how we expect our DRS curve to evolve with increased oxidation time, which we then use as the inputs to create our synthetic data.
+
+## Step 2: Generating Synthetic Data and Training the Multi-Task Convolutional Neural Network
+
+The next notebook to use will be titled "Train Oxidation and Regression Model.ipynb." In this notebook, you will need to edit lines 23 - 25 that contain the functions describing the peak parameter evolution to match the functions generated from the first notebook.
+
+    amplitude = 0.435 - 0.15 * time**(0.26)
+    width = 9.452 + 3.89 * time**0.26
+    position = 621.06 - 16.16 * time**0.08
+
+Where all the constants shown above will match the values for a, b, and c from the allometric fitting. You can also play around with the parameters that generate a random value of noise for both the substrate and material spectra, as well as the uncertainty value in the peak fit parameters (currently set to +/- 5%).
+
+    amplitude *= np.random.uniform(0.95, 1.05)
+    width *= np.random.uniform(0.95, 1.05)
+    position *= np.random.uniform(0.995, 1.005)
+
+    spectrum = lorentzian(wavelengths, amplitude, width, position)
+
+    # Add noise
+    noise = np.random.normal(0, 0.005, size=spectrum.shape)
+    spectrum += noise
+
+The remaining parts of this cell are used for training the multi-task model, and includes the current architecture of the model (which contains shared feature extraction layers with seperate regression and classification heads).
+
+<img width="878" alt="image" src="https://github.com/user-attachments/assets/4f6a37cd-de71-4364-ac09-c38a95eb1d62" />
 
 
 
